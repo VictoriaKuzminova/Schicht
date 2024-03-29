@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Авторизация";
+}
+@model SchichtNew.Models.LoginUser
+
+<style>
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+
+    .success {
+      color: green;
+      margin-top: 5px;
+    }
+ </style>
+
+
+<div class="container mt-5">
+    <div class="form-container">
+<h2>Добро пожаловать!</h2>
+        <form class="row g-3 needs-validation" novalidate method="post" asp-controller="Home" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+    <div class="form-group">
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" type="email" class="form-control" id="email" name="email" placeholder="Поле для ввода e-mail" required>
+                <div class="invalid-feedback">
+                    Пожалуйста, введите e-mail.
+                </div>
+    </div>
+    <div class="form-group">
+                <label asp-for="UserName">Логин:</label>
+                <input asp-for="UserName" type="text" class="form-control" id="UserName" name="UserName" placeholder="Поле для ввода логина" required>
+                <div class="invalid-feedback">
+                    Пожалуйста, введите логин.
+                </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Пароль:</label>
+        <input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="Поле для ввода пароля" required>
+                <div class="invalid-feedback">
+                    Пожалуйста, введите пароль.
+                </div>
+    </div>
+    <div class="form-group">
+        <input asp-for="RememberMe" type="hidden" class="form-control" id="rememberMe" name="rememberMe" value="false">
+        <!--<span asp-validation-for="RememberMe"></span>-->
+        <div class="error"></div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top:-25px">
+        <button type="submit" id="submit" name="submit" class="btn btn-primary btn-lg">Войти</button>
+    </div>
+            <div class="form-group" style="margin-top:-1px; text-align: center">
+            <a asp-controller="Home" asp-action="Register">Регистрация</a>
+            </div>
+</form>
+</div>
+</div>
+
+
+
+<script>
+    // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
+    (function () {
+        'use strict'
+
+        // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+  </script>

@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model SchichtNew.Models.RoleApp
+
+<h2>Изменение ролей для пользователя @Model.EmailUser</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.IdUser" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
